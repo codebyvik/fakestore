@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
 import { RESPONSE_STATUS_CODE } from "@/constants/api.constant";
-import { showToastNotification } from "@/redux/notification-slice";
+import { toast } from "sonner";
 
 /**
  * Generic handler for API calls in sagas.
@@ -29,7 +29,9 @@ export function* handleApiCall(
     }
   } catch (error: any) {
     const errorMessage = error?.response?.data?.message || error?.message || "An error occurred!";
-    yield put(showToastNotification({ message: errorMessage, severity: "error" }));
     yield put(errorAction(error));
+    toast.error("Error", {
+      description: errorMessage,
+    });
   }
 }
