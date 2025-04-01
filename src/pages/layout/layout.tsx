@@ -1,3 +1,5 @@
+import Footer from "@/components/shared/footer/footer";
+import Header from "@/components/shared/header/header";
 import React from "react";
 
 type Props = {
@@ -5,7 +7,13 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default Layout;

@@ -1,6 +1,6 @@
 import Layout from "./pages/layout/layout";
-import AppRoutes from "./routes";
 import { Toaster } from "@/components/ui/sonner";
+import AppRoutes from "./routes";
 
 function App() {
   return (
