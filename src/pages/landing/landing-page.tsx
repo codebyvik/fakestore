@@ -16,18 +16,21 @@ const LandingPage = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
+  // if fetching then show loader
   if (isFetching) {
     return (
-      <div className="flex w-full min-h-screen">
+      <div className="flex w-full min-h-screen justify-center items-center">
         <Loader size={30} />
       </div>
     );
   }
 
+  // If no products list from api return empty page
   if (!list) {
     return <EmptyPage />;
   }
 
+  // Product List will be filtered based on category selected , else all products will be shown
   let productList =
     selectedCategories.length > 0
       ? list.filter((item) =>
@@ -35,6 +38,7 @@ const LandingPage = () => {
         )
       : list;
 
+  // map through and get all the categories and remove duplicates;
   let categoryList = list.map((item) => ({
     name: item.category,
   }));
