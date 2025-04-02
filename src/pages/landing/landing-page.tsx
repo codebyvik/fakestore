@@ -4,6 +4,7 @@ import Filter from "@/components/shared/filter/filter";
 import Loader from "@/components/shared/loader/loader";
 import { fetchAllProducts } from "@/redux/product-slice";
 import { RootState } from "@/redux/store";
+import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -27,7 +28,7 @@ const LandingPage = () => {
 
   // If no products list from api return empty page
   if (!list) {
-    return <EmptyPage />;
+    return <EmptyPage Icon={<ShoppingCart size={100} />} />;
   }
 
   // Product List will be filtered based on category selected , else all products will be shown

@@ -1,5 +1,9 @@
-import { ProductStateType } from "@/types/products/product-state.types";
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  ProductDetailsType,
+  ProductListItem,
+  ProductStateType,
+} from "@/types/products/product-state.types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialProductState: ProductStateType = {
   productList: {
@@ -24,9 +28,13 @@ const productSlice = createSlice({
     fetchAllProducts: (state) => {
       state.productList.isFetching = true;
     },
-    fetchAllProductsSuccess: (state, action) => {
+    fetchAllProductsSuccess: (state, action: PayloadAction<ProductListItem[]>) => {
       state.productList.isFetching = false;
-      state.productList.list = action.payload;
+
+      state.productList.list = action.payload?.map((item) => ({
+        ...item,
+        mrp: item.price + Math.random() * 1000,
+      }));
     },
     fetchAllProductsError: (state, action) => {
       state.productList.isFetching = false;
@@ -37,9 +45,13 @@ const productSlice = createSlice({
     fetchProductDetails: (state, _action) => {
       state.productDetails.isFetching = true;
     },
-    fetchProductDetailsSuccess: (state, action) => {
+    fetchProductDetailsSuccess: (state, action: PayloadAction<ProductDetailsType>) => {
       state.productDetails.isFetching = false;
-      state.productDetails.details = action.payload;
+
+      state.productDetails.details = {
+        ...action.payload,
+        mrp: action.payload.price + Math.random() * 1000,
+      };
     },
     fetchProductDetailsError: (state, action) => {
       state.productDetails.isFetching = false;

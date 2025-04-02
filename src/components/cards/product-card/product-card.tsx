@@ -1,11 +1,11 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card";
 import { baseRoutes } from "@/routes/routes";
-import { ProductDetailsType } from "@/types/products/product-state.types";
+import { ProductListItem } from "@/types/products/product-state.types";
 import { IndianRupee } from "lucide-react";
 import { Link } from "react-router";
 
 type Props = {
-  product: ProductDetailsType;
+  product: ProductListItem;
 };
 
 const ProductCard = ({ product }: Props) => {

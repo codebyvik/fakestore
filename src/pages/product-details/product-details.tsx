@@ -1,9 +1,11 @@
 import Loader from "@/components/shared/loader/loader";
+import Price from "@/components/shared/price/price";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { addToCart } from "@/redux/cart-slice";
 import { fetchProductDetails } from "@/redux/product-slice";
 import { RootState } from "@/redux/store";
-import { IndianRupee, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -30,8 +32,9 @@ const ProductDetails = () => {
 
   const fillPercentage = (details.rating.rate / 5) * 100;
 
-  let increasedMRP = details.price + Math.random() * 1000;
-  let discountPercentage = ((increasedMRP - details.price) / increasedMRP) * 100;
+  const handleAddToCart = () => {
+    dispatch(addToCart(details));
+  };
 
   return (
     <div className="flex flex-col md:flex-row gap-4 px-2 md:px-40 my-4">
@@ -41,7 +44,10 @@ const ProductDetails = () => {
           src={details?.image}
           alt={`${details.title}-image`}
         />
-        <Button className="!bg-orange-500 text-white cursor-pointer w-full mt-4 hover:!bg-orange-400">
+        <Button
+          onClick={handleAddToCart}
+          className="!bg-orange-500 text-white cursor-pointer w-full mt-4 hover:!bg-orange-400"
+        >
           Add to card
         </Button>
       </aside>
@@ -64,18 +70,7 @@ const ProductDetails = () => {
           </div>
         </p>
         {/* Price */}
-        <p className="flex gap-2">
-          <span className="text-xl font-bold flex items-center gap-1">
-            {" "}
-            <IndianRupee size={15} /> {details.price.toFixed(2)}
-          </span>
-          <span className="text-sm line-through text-gray-500 flex items-center gap-1">
-            <IndianRupee size={10} /> {increasedMRP.toFixed(2)}
-          </span>
-          <span className="text-sm text-green-500 font-bold flex gap-1 items-center">
-            {discountPercentage.toFixed(2)} % off
-          </span>
-        </p>
+        <Price mrp={details.mrp} price={details.price} />
 
         {/* Description */}
         <Card className="mt-4">
