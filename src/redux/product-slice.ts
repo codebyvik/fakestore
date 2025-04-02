@@ -34,7 +34,7 @@ const productSlice = createSlice({
       state.productList.error = action.payload;
     },
     // Fetching products Details
-    fetchProductDetails: (state) => {
+    fetchProductDetails: (state, _action) => {
       state.productDetails.isFetching = true;
     },
     fetchProductDetailsSuccess: (state, action) => {

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card";
 import { baseRoutes } from "@/routes/routes";
 import { ProductDetailsType } from "@/types/products/product-state.types";
+import { IndianRupee } from "lucide-react";
 import { Link } from "react-router";
 
 type Props = {
@@ -26,10 +27,17 @@ const ProductCard = ({ product }: Props) => {
         </CardContent>
         <CardFooter className="flex flex-col justify-start items-start">
           <div className="flex gap-2">
-            <p className="text-xl text-gray-500 line-through">{increasedMRP.toFixed(2)}</p>
-            <p className="text-green-500">{discountPercentage.toFixed(2)} % off</p>
+            <p className="text-xl text-gray-500 line-through flex gap-1 items-center">
+              <IndianRupee size={15} />
+              {increasedMRP.toFixed(2)}
+            </p>
+            <p className="text-green-500 flex gap-1 items-center">
+              {discountPercentage.toFixed(2)} % off
+            </p>
           </div>
-          <p>{product.price?.toFixed(2)}</p>
+          <p className="flex gap-1 items-center">
+            <IndianRupee size={15} /> {product.price?.toFixed(2)}
+          </p>
         </CardFooter>
       </Card>
     </Link>
