@@ -1,13 +1,14 @@
 export const routeNames = {
   // landing page
-  home: "/",
+  home: import.meta.env.MODE === "development" ? "/" : "/fakestore/",
   //  Product Details page
-  productDetails: "/product/:id",
+  productDetails:
+    import.meta.env.MODE === "development" ? "/product/:id" : "/fakestore/product/:id",
   // cart page
-  cart: "/cart",
+  cart: import.meta.env.MODE === "development" ? "/cart" : "/fakestore/cart",
 };
 
 export const baseRoutes = {
   //  Product Details page
-  productDetails: "/product",
+  productDetails: import.meta.env.MODE === "development" ? "/product" : "/fakestore/product",
 };
