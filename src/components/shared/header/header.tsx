@@ -6,7 +6,7 @@ type Props = {};
 const Header = (props: Props) => {
   return (
     <div
-      className={`sticky top-0 left-0 w-full h-[60px] bg-primary px-5 md:px-40 flex items-center justify-between`}
+      className={`sticky top-0 left-0 w-full h-[60px] bg-primary px-5 md:px-40 flex items-center justify-between z-10`}
     >
       <div>
         <Link to={routeNames.home}>
