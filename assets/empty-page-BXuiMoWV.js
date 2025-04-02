@@ -1,0 +1,1 @@
+import{j as s}from"./index-Cgxnw4W8.js";const l=({Icon:r,text:e})=>s.jsxs("div",{className:"w-full min-h-[400px] text-gray-400 flex justify-center items-center flex-col",children:[r,e&&s.jsx("p",{className:"my-2",children:e})]});export{l as E};
